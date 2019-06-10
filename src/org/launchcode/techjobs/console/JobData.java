@@ -91,7 +91,6 @@ public class JobData {
         loadData();
 
         ArrayList<HashMap<String, String>> filteredjobs = new ArrayList<>();
-        //String jobdatarows = "";
         for (HashMap<String, String> row : allJobs) {
             Collection<String> rowValues = row.values();
             String jobdatarows = "";
