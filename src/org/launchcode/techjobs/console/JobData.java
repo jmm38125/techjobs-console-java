@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -83,6 +84,34 @@ public class JobData {
 
         return jobs;
     }
+
+    public static ArrayList<HashMap<String, String>> findByValue(String searchterm) {
+
+        // load data, if not already loaded
+        loadData();
+
+        ArrayList<HashMap<String, String>> filteredjobs = new ArrayList<>();
+        //String jobdatarows = "";
+        for (HashMap<String, String> row : allJobs) {
+            Collection<String> rowValues = row.values();
+            String jobdatarows = "";
+
+            ArrayList<String> listOfValues = new ArrayList<>(rowValues);
+
+            for (String s : listOfValues) {
+                jobdatarows += s + "";
+            }
+
+            String jobdatarowslower = jobdatarows.toLowerCase();
+
+            if (jobdatarowslower.contains(searchterm.toLowerCase())) {
+                    filteredjobs.add(row);
+            }
+        }
+
+
+        return filteredjobs;
+}
 
     /**
      * Read in data from a CSV file and store it in a list
